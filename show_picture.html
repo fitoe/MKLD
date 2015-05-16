@@ -1,12 +1,13 @@
 <style type="text/css">
 #patternContainer{
-	display:none;}
+ display:none;
+	}
 #pricepad{ display:none;}
 </style>
 {template "content","header"}
 {template "content","menu"}
 <script src="/phpcms/templates/default/content/js/patternLock.min.js"></script>
-<link href="/phpcms/templates/default/content/js/patternLock.css" />
+<link rel="stylesheet" media="screen" href="/phpcms/templates/default/content/js/patternLock.css" />
 
 <div class="cn1">
   <div class="cn1top"> </div>
@@ -97,6 +98,7 @@
 
 
 <script type="text/javascript">
+trycount=0;
 $(".smallpic").bind("click", function(){
   $(".prophoto img").attr("src",$(this).attr("relurl"));
 });
@@ -129,17 +131,32 @@ $(".backbtn a").bind("mouseout", function(){
 //滑动解锁
 var lock = new PatternLock("#patternContainer",{
     onDraw:function(pattern){
-        if(pattern=="12369"){
-			lock.reset();
-			$("#pricepad").fadeIn("slow");
-			$("#patternContainer").hide();
-		} else {
-			//lock.reset();
-			lock.error();
+		$.get("/phpcms/templates/default/content/php/login.php", { pattern: pattern },
+		  function(data){
+			if (trycount>3){
+				alert("Please call 770-368-1360 for the password");
+				return false;
 			}
+			if(data=="1"){
+				lock.reset();
+				$("#pricepad").fadeIn("slow");
+				$("#patternContainer").hide();
+					<?PHP
+						Session_Start();
+						$_SESSION["login"]=true;
+						?>
+			} else {
+				//lock.reset();
+				lock.error();
+				trycount++;
+				}
+		  });
+		
+        
     }
 });
 $("#openlock").on('click', function() {
+	$("#openlock").hide();
 	$("#patternContainer").show();
 });
 </script>
