@@ -1,5 +1,13 @@
+<style type="text/css">
+#patternContainer{
+	display:none;}
+#pricepad{ display:none;}
+</style>
 {template "content","header"}
 {template "content","menu"}
+<script src="/phpcms/templates/default/content/js/patternLock.min.js"></script>
+<link href="/phpcms/templates/default/content/js/patternLock.css" />
+
 <div class="cn1">
   <div class="cn1top"> </div>
   <!--包含位置导航 --> 
@@ -53,6 +61,27 @@
               {if trim($CubicFeet)}<b>Cubic Feet: </b>{$CubicFeet}<br />{/if}
               {if trim($SeatType)}<b>Seat Type: </b>{$SeatType}<br />{/if}
               {if trim($FrameFinish)}<b>Frame Finish:</b>{$FrameFinish}<br />{/if}
+              <?php
+                session_start();
+                if($_SESSION["login"]){
+                ?>
+                <div id="pricepad">
+					{if trim($price)}<b>Price:</b>${$price}<br />{/if}
+              		{if trim($stock)}<b>Stock:</b>{$stock}<br />{/if}
+                </div>
+                <?php
+                } else {?>
+                <a id="openlock" href="#">>Login to view price & stock.</a>
+                <div id="pricepad">
+					{if trim($price)}<b>Price:</b>${$price}<br />{/if}
+              		{if trim($stock)}<b>Stock:</b>{$stock}<br />{/if}
+                </div>
+              <div id="patternContainer"></div>
+<?php
+                }; 
+                ?>
+              
+              
             {if trim($Glides)}<b>Glides:</b>{$Glides}</li>{/if}
            {if trim($Options)}<li class="greytitle">Options / Upgrades</li>
             <li class="discription">{$Options}
@@ -96,6 +125,22 @@ $(".backbtn a").bind("mouseover", function(){
 });
 $(".backbtn a").bind("mouseout", function(){
    $(".backbtn a").text("back");
+});
+//滑动解锁
+var lock = new PatternLock("#patternContainer",{
+    onDraw:function(pattern){
+        if(pattern=="12369"){
+			lock.reset();
+			$("#pricepad").fadeIn("slow");
+			$("#patternContainer").hide();
+		} else {
+			//lock.reset();
+			lock.error();
+			}
+    }
+});
+$("#openlock").on('click', function() {
+	$("#patternContainer").show();
 });
 </script>
 
