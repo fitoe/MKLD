@@ -21,6 +21,8 @@ $result = mysql_query("SELECT * FROM mc_settings where id=1");
 $row = mysql_fetch_array($result);
 if($row['value']==$pattern){
 	echo 1;
+	Session_Start();
+	$_SESSION["login"]=true;
 	} else {
 	echo 0;
 		};

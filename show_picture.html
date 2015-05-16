@@ -3,6 +3,7 @@
  display:none;
 	}
 #pricepad{ display:none;}
+#showpricepad{ display:block;}
 </style>
 {template "content","header"}
 {template "content","menu"}
@@ -66,7 +67,7 @@
                 session_start();
                 if($_SESSION["login"]){
                 ?>
-                <div id="pricepad">
+                <div id="showpricepad">
 					{if trim($price)}<b>Price:</b>${$price}<br />{/if}
               		{if trim($stock)}<b>Stock:</b>{$stock}<br />{/if}
                 </div>
@@ -141,10 +142,7 @@ var lock = new PatternLock("#patternContainer",{
 				lock.reset();
 				$("#pricepad").fadeIn("slow");
 				$("#patternContainer").hide();
-					<?PHP
-						Session_Start();
-						$_SESSION["login"]=true;
-						?>
+
 			} else {
 				//lock.reset();
 				lock.error();
