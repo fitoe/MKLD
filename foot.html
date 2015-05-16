@@ -1,0 +1,144 @@
+<!--content2开始-->
+<div class="clear"></div>
+<div class="cn2">
+{pc:content action="category" catid="56" num="25" siteid="$siteid" order="listorder ASC"}
+
+    {loop $data $r}
+    
+    <div class="aboutlk">
+    <div class="aboutlktit">{$r[catname]}</div>
+    <div class="aboutlkcn">
+      <ul>
+        {pc:content action="category" catid="$r[catid]" num="15" siteid="$siteid" order="listorder ASC" return="data2"}
+          {loop $data2 $rs}
+          <li><a href="{$rs[url]}" style="color:{$rs[style]}">{str_cut($rs[catname],80)}</a></li>
+          {/loop}
+        {/pc}
+        </ul>
+        </div>
+    </div>
+
+    
+     {/loop}
+   {/pc} 
+
+  <div class="aboutlk1">
+    <div class="aboutlktit">Follow Us On</div>
+    <div class="imgcn">
+    <ul>
+    {pc:content action="lists" catid="90" num="2"  moreinfo="1" order="listorder,id DESC"}
+          {loop $data $r}
+          
+          <li><a href="{$r[url]}" title="{$r[description]}"><img src="{$r[thumb]}" width="32" height="32"  border="0"/></a></li>
+         
+          {/loop}
+        {/pc}
+     </ul>
+    </div>
+  </div>
+</div>
+<!--content2结束-->
+<div class="box cat-area" {if $num%2!=0}style=" margin-right:10px"{/if}>
+
+<!--foot开始-->
+<div class="footbg">
+  <div class="foot">
+    <div class="footcn1">Copyright © 2003-2012 All Rights Reserved</div>
+   
+  </div>
+</div>
+  <div style="display:none;"><script src="http://s95.cnzz.com/stat.php?id=5322941&web_id=5322941&show=pic" language="JavaScript"></script></div>
+<!--foot结束  输出菜单-->
+
+                            <body>
+                          
+                            </html>
+<script type="text/javascript">
+//收藏夹浮动层
+$("#favlist").powerFloat({
+    width: 250,
+	offsets:{x:-20,y:0},
+	hideDelay:500,
+	edgeAdjust:true,
+    target:$(".fav"),
+    targetMode: "common"	
+});
+
+//星标特效
+$(".addtocart").bind("click", function(){
+var offset = $(this).offset();
+var offsetw = $("#favlist").offset();
+$(this).css({"left":offset.left,"top":offset.top});
+$(this).css("position","absolute");
+$(this).animate({top: offsetw.top,left:offsetw.left,opacity: 'hide'},1500);
+});
+
+//鼠标移上，星星变黄
+$(".onepic .addstar img").bind("mouseover", function(){
+$(this).attr({ src: "{IMG_PATH}star-yellow.png", alt: "Add" });
+});
+
+//鼠标移出，星星变灰色
+$(".onepic .addstar img").bind("mouseout", function(){
+$(this).attr({ src: "{IMG_PATH}star-gray.png", alt: "Cancel" });
+$("textarea").val("hello world!");
+});
+
+
+//购物车
+simpleCart({
+    cartColumns: [
+{ attr: "name" , label: "Name" } ,
+{ view: "remove" , text: " <img class='simpleCart_remove' src='{IMG_PATH}icon-del-gray.png' alt='delete this' />" , label: false },
+{ view: "decrement" , label: false , text:" <img src='{IMG_PATH}icon-jian.png' style='margin:5px 5px 0 5px;' alt='del' />"} ,
+{ attr: "quantity" , label: "Qty" } ,
+{ view: "increment" , label: false , text: "<img src='{IMG_PATH}icon-add.png' style='margin:5px 5px 0 5px;' alt='add' />"} 
+    ]
+});
+
+//下拉菜单
+    $(document).ready(function(){ 
+        $("ul.sf-menu").supersubs({ 
+            minWidth:    12,   // minimum width of sub-menus in em units 
+            maxWidth:    27,   // maximum width of sub-menus in em units 
+            extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
+                               // due to slight rounding differences and font-family 
+        }).superfish();  // call supersubs first, then superfish, so that subs are 
+                         // not display:none when measuring. Call before initialising 
+                         // containing tabs for same reason. 
+    }); 
+	
+//google
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20753121-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+//zopim
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//cdn.zopim.com/?JPnOybDCE314cnrFdbSYktpnLNbrlJoy';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zopim Live Chat Script-->
+<script type="text/javascript">
+$zopim( function() {
+$zopim.livechat.button.setPosition('br');
+$zopim.livechat.window.setTheme('solid');
+$zopim.livechat.window.setColor('#ffb6bf');
+$zopim.livechat.setGreetings({
+'online' : ['Click here to chat', 'Leave a question or comment and our agents will try to attend to you shortly =)'],
+'offline': ['Leave a message', 'We are offline, but if you leave your message and contact details, we will try to get back to you =)'],
+'away'   : ['Click here to chat', 'If you leave a question or comment, our agents will be notified and will try to attend to you shortly =)']  });
+$zopim.livechat.bubble.setTitle('Questions?');
+$zopim.livechat.bubble.setText('Click here to chat with us!');
+$zopim.livechat.bubble.show(true);
+})
+</script>

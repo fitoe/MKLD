@@ -1,0 +1,10 @@
+<div class="cn1cnleft">
+<?php $s=explode(',',catpos($catid,","));$s=strip_tags($s[1]);?>
+{pc:content action="category" catid="6" num="25" siteid="$siteid" order="listorder ASC"}
+    <ul>
+    {loop $data $r}
+    <li><a href="{$r[url]}"{if $r[catname]==$s} class="onme"{/if}>{$r[catname]}</a></li>
+    {/loop}
+    </ul>
+{/pc}
+</div>

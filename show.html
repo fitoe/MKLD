@@ -1,0 +1,26 @@
+{template "content","header"}
+{template "content","menu"} 
+<!--content1开始-->
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <!--包含位置导航 --> 
+  {template "content","where"}
+  <div class="cn1cn"> 
+    <!--包含left -->
+    <div class="left"> {template "content","left"}
+</div>
+    <div class="banner">
+      <div class="picmain"><!--产品图片相关 -->
+        <div class="art_title">{$title}</div>
+        <div class="art_content">
+        {$content}
+<!--主内容区结束 -->
+ </div>
+
+    </div>
+  </div><br style="clear:both;" /> 
+  <div class="cn1top"></div>
+</div>
+<!--content1结束--> 
+<!--包含foot -->
+{template "content","foot"} 

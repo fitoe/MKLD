@@ -1,0 +1,105 @@
+{template "content","header"}
+{template "content","menu"}
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <!--包含位置导航 --> 
+  {template "content","where"}
+  <div class="cn1cn"> 
+    <!--包含left -->
+    <div class="left">
+      {template "content","leftparentsub"}</div>
+    <div class="banner">
+      <div class="picmain"> 
+        <!--产品图片相关 -->
+       
+        <div class="prod">
+          <div class="prophoto"><a href="{$thumb}" rel="group" class="fancybox" title="click to view big image"><img src="{$thumb}" /></a></div>
+          <!--产品小图 -->
+
+          {if count($pictureurls)!=0}
+          <ul class="prolist">
+          {loop $pictureurls $pic_k $r}
+			 <li><a href="{$r[url]}" rel="group" class="fancybox" title="{$r[alt]}"><img class="smallpic" src="{thumb($r[url],64, 64, 0)}" alt="{$r[alt]}" relurl="{$r[url]}" /></a></li>
+		{/loop}
+          </ul>
+          {/if}
+{pc:content action="lists" catid="35" num="16" order="listorder"}
+          <!--材质 -->
+          <ul  id="finishes" class="finishes">
+            <div class="greytitle" style="margin-top:0;">Finishes</div>
+          {loop $data $r}
+          {if str_exists(array2string($Finishes),$r[title])}<li><img src="{$r[thumb]}" alt="{$r[title]}" /> <span class="finishes_name"><a href="{$r[url]}" target="_blank">{$r[title]}</a></span></li>{/if}
+          {/loop}
+          </ul>
+          {/pc}
+        </div>
+        <!--产品说明 -->
+        <div class="disc"> 
+          <!--back按钮 -->
+          <div class="backbtn"><a href="{$CATEGORYS[$catid][url]}">BACK</a></div>
+          <div class="prod_title simpleCart_shelfItem"><span  class="item_name">{$title}</span>
+          <!--<a class="addstar" href="javascript:;"><img class="addtocart item_add" src="{IMG_PATH}star1.png" alt="add to cart" title="add to cart" /></a>--></div>
+          <ul class="discmain">
+            {if trim($Description)}<li class="greytitle">Specification</li>
+            <li class="discription">{$Description}</li>{/if}
+            <li class="greytitle">DIMENSIONS</li>
+            <li class="discription">
+              {if trim($Width)}<b>Width:</b>{$Width}&quot;<br />{/if}
+              {if trim($Depth)}<b>Depth: </b>{$Depth}&quot;<br />{/if}
+              {if trim($Height)}<b>Height:</b> {$Height}&quot;<br />{/if}
+              {if trim($COM)}<b>COM: </b>{$COM} YD<br />{/if}
+              {if trim($ShippingWeight)}<b>Shipping Weight: </b>{$ShippingWeight} LBS<br />{/if}
+              {if trim($Number_per_Carton)}<b>Number per Carton: </b>{$Number_per_Carton}<br />{/if}
+              {if trim($CubicFeet)}<b>Cubic Feet: </b>{$CubicFeet}<br />{/if}
+              {if trim($SeatType)}<b>Seat Type: </b>{$SeatType}<br />{/if}
+              {if trim($FrameFinish)}<b>Frame Finish:</b>{$FrameFinish}<br />{/if}
+            {if trim($Glides)}<b>Glides:</b>{$Glides}</li>{/if}
+           {if trim($Options)}<li class="greytitle">Options / Upgrades</li>
+            <li class="discription">{$Options}
+              <b><br />
+              See Finishes for stock options. Please call 770-368-1360 CHAIRS for custom options.</b></li>{/if}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cn1top clear"></div>
+</div>
+
+
+<script type="text/javascript">
+$(".smallpic").bind("click", function(){
+  $(".prophoto img").attr("src",$(this).attr("relurl"));
+});
+//如果没有Finishes则隐藏
+if(!$("#finishes").has('li').length){ 
+$("#finishes").hide(); 
+} 
+
+
+//lightbox插件
+$("a.fancybox").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false,
+		'maxWidth'	:	600,
+		'maxHeight'	:	600,
+		'mouseWheel'	:	true,
+		'preload '	:	5,
+		'openEffect '	:'elastic'
+		
+	});
+$(".backbtn a").bind("mouseover", function(){
+  $(".backbtn a").text("go back to the cagegory");
+});
+$(".backbtn a").bind("mouseout", function(){
+   $(".backbtn a").text("back");
+});
+</script>
+
+<!--content1结束--> 
+
+<!--包含foot --> 
+{template "content","foot"} 

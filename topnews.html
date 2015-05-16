@@ -1,0 +1,11 @@
+<div class="headertop1"><ul>
+<marquee direction="left" loop="-1" onmouseover="stop()" behavior="alternate" onmouseout="start()" scrollamount="4" >
+{pc:content action="lists" catid="36" num="16" order="listorder,id DESC"}
+        {if count($data)==0}no data{/if}
+          {loop $data $r}
+          <li><a href="{$r[url]}" style="color:{$r[style]}">{str_cut($r[title],80)}</a></li>
+          {/loop}
+        {/pc}
+</marquee>
+</ul>
+</div>

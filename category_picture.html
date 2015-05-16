@@ -1,0 +1,29 @@
+{template "content","header"}
+{template "content","menu"} 
+<!--content1开始-->
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <!--包含位置导航 --> 
+  {template "content","where"}
+  <div class="cn1cn"> 
+    <!--包含left -->
+    <div class="left"> {template "content","leftsub"}
+ </div>
+    <div class="banner">
+      <div class="picmain"><!--产品图片相关 -->
+        
+        <!--列表 --> 
+        {pc:content action="category" catid="$catid" num="25" siteid="$siteid" order="listorder ASC"}
+        {loop $data $r}
+        <ul class="cats">
+          <li class="pic"><img src="{if $r[image]}{$r[image]}{else}{IMG_PATH}chair.jpg{/if}" height="220" /></li>
+          <li class="name"><a href="{$r[url]}">{$r[catname]}</a></li>
+        </ul>
+        {/loop}{/pc} </div>
+    </div>
+  </div>
+  <div class="cn1top clear"></div>
+</div>
+<!--content1结束--> 
+<!--包含foot -->
+{template "content","foot"} 

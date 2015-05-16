@@ -1,0 +1,43 @@
+{template "content","header"} 
+<!-- CSS -->
+<link type="text/css" href="{CSS_PATH}skitter.styles.css" media="all" rel="stylesheet" />
+<!-- JS --> 
+<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" src="{JS_PATH}jquery.skitter.min.js"></script> 
+
+<!-- Init Plugin --> 
+{template "content","menu"}
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <!--包含位置导航 --> 
+  {template "content","where"}
+  <div class="picslides"> 
+        {pc:content action="lists" catid="$catid" num="20" order="listorder" page="$page"}
+        {if count($data)==0}no data{/if}
+        <div class="box_skitter box_skitter_large">
+          <ul>
+            {loop $data $r}
+            <li><a href="{$r[url]}"><img src="{$r[thumb]}" class="cube" width="800px" height="300px" /></a>
+              <div class="label_text">
+                <p>{$r[title]}</p>
+              </div>
+            </li>
+            {/loop}
+          </ul>
+        </div>
+        {/pc}
+  </div>
+  <div class="cn1top clear"></div>
+</div>
+<!--content1结束--> 
+<script>
+	$(document).ready(function() {
+		$(".box_skitter_large").skitter({
+			animation: "randomSmart", 
+			thumbs: true
+
+		});
+	});
+</script> 
+<!--包含foot --> 
+{template "content","foot"} 

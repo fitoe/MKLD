@@ -1,0 +1,32 @@
+{template "content","header"}
+{template "content","menu"}
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <!--包含位置导航 --> 
+  {template "content","where"}
+  <div class="cn1cn"> 
+    <!--包含left -->
+    <div class="left">
+    {template "content","leftparentsub"}</div>
+    <div class="banner">
+      <div class="picmain"> 
+        <!--产品图片相关 --> 
+        {pc:content action="lists" catid="$catid" num="16" order="listorder" page="$page"}
+        {if count($data)==0}no data{/if}
+          {loop $data $r}
+          <ul class="onepic simpleCart_shelfItem">
+          <li class="picimg"><a href="{$r[url]}"><img src="{$r[thumb]}" alt="{$r[title]}" /></a></li>
+          <li class="prodname"><!--<a class="addstar" href="javascript:;"><img class="addtocart item_add" src="{IMG_PATH}star-gray.png" alt="add to cart" title="add to cart" /></a> --><a href="{$r[url]}" style="color:{$r[style]}" class="item_name">{str_cut($r[title],80)}</a></li>
+          </ul>
+          {/loop}
+        <div id="pages" class="text-c">{$pages}</div>
+        {/pc}
+      </div>
+    </div>
+  </div>
+  <div class="cn1top clear"></div>
+</div>
+<!--content1结束--> 
+
+<!--包含foot --> 
+{template "content","foot"} 

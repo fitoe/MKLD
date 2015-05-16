@@ -1,0 +1,27 @@
+<div class="cn1cnleft">
+  <?php $s=explode(',',catpos($catid,","));$s=strip_tags($s[1]);
+  if($top_parentid==$catid){
+  $thecatid=6;
+  } else {
+  $thecatid=$CATEGORYS[$catid][parentid];
+  };
+  ?>
+  {pc:content action="category" catid="6" num="25" siteid="$siteid" order="listorder ASC" return="data"}
+  <ul>
+    {loop $data $r}
+    <li><a href="{$r[url]}"{if $r[catname]==$s} class="onme"{/if}>{$r[catname]}</a></li>
+    {if $r[catname]==$s && $thecatid && $thecatid!=="6" }
+    <div class="leftsub">
+      <ul>
+        <?php $s2=explode(',',catpos($catid,","));$s2=strip_tags($s2[2]);?>
+        {pc:content action="category" catid="$thecatid" num="25" siteid="$siteid" order="listorder ASC" return="data2"}
+        {loop $data2 $r2}
+        <li><a href="{$r2[url]}"{if $r2[catname]==$s2} class="onmesub"{/if}>{$r2[catname]}</a></li>
+        {/loop}{/pc}
+      </ul>
+    </div>
+    {/if}
+    
+    {/loop}
+  </ul>
+  {/pc} </div>

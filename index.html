@@ -1,0 +1,44 @@
+<!--包含header -->
+
+{template "content","header"}
+
+{template "content","topnews"}
+<div class="ad">
+<a href="/uploadfile/2013/catelog2013.pdf"><img src="/uploadfile/poster/newcategory.jpg"  alt="mkld 2013-2014 category"/></a>
+<a href="/uploadfile/2013/dealer.jpg" target="_blank"><img src="/uploadfile/poster/dealer-small.jpg"  alt="dealer advantage"/></a>
+</div> 
+{template "content","menu"} 
+<!--content1开始-->
+<link rel="stylesheet" href="{CSS_PATH}craftyslide.css" />
+<script src="{JS_PATH}craftyslide.js"></script>
+<div class="cn1">
+  <div class="cn1top"> </div>
+  <div class="cn1cn"> 
+    <!--包含left --> 
+    {template "content","left"}
+    {pc:content action="lists" catid="37" num="16" order="listorder"}
+    <div id="slideshow" class="banner">
+      <ul>
+        {loop $data $r}
+        <li><a href="{$r[title]}"><img src="{$r[thumb]}" title="{$r[title]}" /></a></li>
+        {/loop}
+        {/pc}
+      </ul>
+    </div>
+  </div>
+  <div class="cn1top"> </div>
+
+</div>
+
+<script>
+$("#slideshow").craftyslide({
+  'pagination': false,
+  'fadetime': 500,
+  'delay': 2500
+});
+
+</script> 
+<!--content1结束--> 
+<!--包含foot --> 
+{template "content","foot"}
+</body></html>
